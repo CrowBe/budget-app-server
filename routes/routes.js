@@ -3,6 +3,8 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
+const secret = process.env.JWT_SECRET;
+
 router.post(
   '/signup',
   passport.authenticate('signup', { session: false }),
@@ -34,7 +36,7 @@ router.post(
                 if (error) return next(error);
   
                 const body = { _id: user._id, email: user.email };
-                const token = jwt.sign({ user: body }, process.env.JWT_SECRET);
+                const token = jwt.sign({ user: body }, secret);
   
                 return res.json({ token });
               }
