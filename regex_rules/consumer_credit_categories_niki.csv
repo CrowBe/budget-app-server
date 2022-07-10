@@ -1,0 +1,26 @@
+﻿Primary Category,Secondary Category,Tertiary Category,Merchant Name,Include Regex,Exclude Regex
+Other,Deposits,Cash,Cash,chq dep|cash deposit,salary
+Other,Deposits,Other Deposits,Other Deposits,deposit,cash deposit|term deposit|tax refund|tax return|salary|interest|gambling|transport|centrelink|income|superannuation|loan
+Other,Deposits,Term,Term,term deposit,interest
+Other,Government and Council Services,Infringements and Penalty notices,Infringements and Penalty notices,penalty|infringement,
+Other,Government and Council Services,Transport Departments,Transport Departments,transport nsw,
+Income,Income,Dividend,Dividend,dividend,
+Income,Income,Interest,Interest,credit interest|interest credit|interest,
+Income,Income,Other Income,Other Income,allowance,gov fam|family allowance|family payment|fao famil|family benefits
+Income,Income,Salary,Salary,(wage)(s\b|\b)|salary|payroll|payslip|income|remuneration,"(return|benefit),(rev .*purchase)|interest"
+Income,Income,Super,Super,australian super|media super|mlc super|\bmlc\b|super rest|twusuper|host plus|quicksuper|col first state|caresuper|amp super|bt super|hostplus|oneanswer|care super|intergra emp super|navigator aust|superchoice|industry super|superannuati|sunsuper|austsuper|superfund,
+Other,Loans,Credit Card Payments,Credit Card Payments,credit card,
+Other,Miscellaneous,Other Credits,Other Credits,we confirm|please note,
+Other,Investment,Transfers,Raiz,raiz,
+Other,Investment,Transfers,Mitrade,mitrade,
+Other,Reversals,Return,Return,return,
+Other,Reversals,Insurance,Youi,youi,
+Other,Reversals,Medicare,Medicare,mcare,
+Other,Reversals,University,Deakin,deakin,
+Other,Reversals,Tax Refund,Tax Refund,ato,
+Other,Reversals,Tax Refund,Tax Refund,tax refund|tax return|\bato\b|\bird\b|inland revenue,transfer
+Other,Transfers,External,External,(external transfer)(s\b|\b)|transfer from|transfer credit|deposit from,t\/as|reversal|refund|paypal
+Other,Transfers,External,External,daniel peter,
+Other,Transfers,Internal,Japan Bank accoutnnt,takenaka,
+Other,Transfers,Internal,Internal,internal transfer,reversal|refund
+Other,Transfers,Other Transfers,Other Transfers,transfer,(external transfer)(s\b|\b)|transfer from|transfer credit|deposit from
