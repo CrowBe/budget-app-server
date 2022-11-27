@@ -7,20 +7,23 @@ const secret = process.env.JWT_SECRET;
 
 router.post(
   '/signup',
-  passport.authenticate('signup', { session: false }),
   async (req, res, next) => {
-    res.json({
-      message: 'Signup successful',
-      user: req.user
-    });
-  }
+    passport.authenticate('signup', { session: false, failureRedirect: '/signup', failureMessage: true },    
+      async (err, user) => {
+        return res.json({
+          message: 'Signup successful',
+          user: {name: user.name, email: user.email}
+        });
+      }
+      )(req, res, next);
+    }
 );
 
 router.post(
     '/login',
     async (req, res, next) => {
       passport.authenticate(
-        'login',
+        'login', { session: false, failureRedirect: '/signup', failureMessage: true },
         async (err, user, info) => {
           try {
             if (err || !user) {
@@ -38,7 +41,7 @@ router.post(
                 const body = { _id: user._id, email: user.email };
                 const token = jwt.sign({ user: body }, secret);
   
-                return res.json({ token });
+                return res.json({ user: {name: user.name, email: user.email, token: token} });
               }
             );
           } catch (error) {

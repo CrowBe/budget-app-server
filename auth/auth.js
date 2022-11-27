@@ -8,12 +8,14 @@ passport.use(
     new localStrategy(
       {
         usernameField: 'email',
-        passwordField: 'password'
+        passwordField: 'password',
+        passReqToCallback: true
       },
-      async (email, password, done) => {
+      async (req, email, password, done) => {
+        const { name } = req.body
         try {
-          const user = await UserModel.create({ email, password });
-  
+          const user = await UserModel.create({ email, password, name });
+          console.log(user)
           return done(null, user);
         } catch (error) {
           done(error);
@@ -34,7 +36,6 @@ passport.use(
       async (email, password, done) => {
         try {
           const user = await UserModel.findOne({ email });
-  
           if (!user) {
             return done(null, false, { message: 'User not found' });
           }

@@ -3,6 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const cors = require('cors');
 
 mongoose.connect("mongodb://127.0.0.1:27017/passport-jwt");
 mongoose.connection.on('error', error => console.log(error) );
@@ -15,7 +17,11 @@ const secureRoutes = require('./routes/secure-routes');
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan('combined'))
+
+app.use(bodyParser.json());
+
+app.use(cors())
 
 app.use('/', routes);
 
@@ -25,10 +31,12 @@ app.use('/user', passport.authenticate('jwt', { session: false }), secureRoutes)
 
 // Handle errors.
 app.use(function(err, req, res, next) {
+  console.log(err)
   res.status(err.status || 500);
   res.json({ error: err });
 });
 
-app.listen(3000, () => {
-  console.log('Server started.')
+const port = process.env.PORT
+app.listen(port, () => {
+  console.log(`Server started on port ${port}.`)
 });
